@@ -300,7 +300,7 @@
 					.append($('<div>')
 						.attr({class: "col"})
 						.append($('<div>')
-							//.attr({class: "col"})
+							.attr({class: "col"})
 							.append($("<a>")
 								.attr("href", "#")
 								.html($("<img>")
