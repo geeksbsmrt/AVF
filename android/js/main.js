@@ -13,7 +13,7 @@
 					$('<li>').append(
 						$('<a>').attr("href", "#cam").attr("id", "camLink")
 							.html($('<h3>')
-								.append("Camera")
+								.append("Camera (Working)")
 							)
 							.on('click', function (e) {
 								// Keep <a> tag from auto launching
@@ -27,7 +27,7 @@
 					$('<li>').append(
 						$('<a>').attr("href", "#gps").attr("id", "gpsLink")
 							.html($('<h3>')
-								.append("GPS")
+								.append("GPS (Working)")
 							)
 							.on('click', function (e) {
 								// Keep <a> tag from auto launching
@@ -41,7 +41,7 @@
 					$('<li>').append(
 						$('<a>').attr("href", "#contacts").attr("id", "contactsLink")
 							.html($('<h3>')
-								.append("Contacts")
+								.append("Contacts (Working)")
 							)
 							.on('click', function (e) {
 								// Keep <a> tag from auto launching
@@ -51,6 +51,20 @@
 							})
 					)
 				)
+			.append(
+				$('<li>').append(
+					$('<a>').attr("href", "#connection").attr("id", "connLink")
+						.html($('<h3>')
+							.append("Connection (Working)")
+						)
+						.on('click', function (e) {
+							// Keep <a> tag from auto launching
+							e.preventDefault()
+							// Use JQM to handle the page transition
+	                        $.mobile.changePage("#connection")
+						})
+				)
+			)
 			.append(
 					$('<li>').append(
 						$('<a>').attr("href", "#geo").attr("id", "geoLink")
@@ -65,6 +79,7 @@
 							})
 					)
 			)
+			
 
 		// Build Research UL
 		$("#research")
@@ -103,6 +118,18 @@
 						.on('click', function (e) {
 							e.preventDefault()
 	                        $.mobile.changePage("#ir")
+						})
+				)
+			)
+			.append(
+				$('<li>').append(
+					$('<a>').attr("href", "#ir").attr("id", "vidLink")
+						.html($('<h3>')
+							.append("Imbeded Video")
+						)
+						.on('click', function (e) {
+							e.preventDefault()
+	                        $.mobile.changePage("#video")
 						})
 				)
 			)
@@ -287,36 +314,101 @@
 	//Runs before Instagram is shown
 	$(document).on("pagebeforeshow", "#inst", function () {
 		console.log("at inst");
-		$("#instGrid").empty()
-		$.ajax({
-			url: "https://api.instagram.com/v1/media/popular?client_id=831fef6bb0e6417eab368d2374183fa5",
-			type: 'GET',
-			dataType: 'jsonp',
-			success: function(info){
-				console.log(info)
-				$.each(info.data, function(index, photo) {
-					var pic = photo.images.thumbnail.url
-					$("#instGrid")
-					.append($('<div>')
-						.attr({class: "col"})
-						.append($('<div>')
-							.attr({class: "col"})
-							.append($("<a>")
-								.attr("href", "#")
-								.html($("<img>")
-									.attr("src", pic)
+		var instPos = function (position) {
+				console.log(position)
+				$("#inst section").empty();
+				$.ajax({
+					url: "https://api.instagram.com/v1/media/search?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&distance=5000&client_id=831fef6bb0e6417eab368d2374183fa5",
+					type: 'GET',
+					dataType: 'jsonp',
+					success: function(info){
+						console.log(info)
+						if (info.meta.code !== 200) {
+							$("#inst section").prepend("<h2>Popular Photos</h2> <p>No photos were found near you in the last 5 days.</p> <p>Search used: <ul><li>Latitude: " + position.coords.latitude + "</li><li>Longitude: " + position.coords.longitude + " </ul></p> <p>Displaying current most popular photos instead!</p>")
+							$("#inst section").append($("<ul>").attr({class: "col:", id: "instGrid"}))
+							$.ajax({
+								url: "https://api.instagram.com/v1/media/popular?client_id=831fef6bb0e6417eab368d2374183fa5",
+								type: 'GET',
+								dataType: 'jsonp',
+								success: function(info){
+									console.log(info)
+									$.each(info.data, function(index, photo) {
+										var pic = photo.images.thumbnail.url
+										$("#instGrid")
+											.append($('<li>')
+												.attr({class: "col"})
+												.append($("<a>")
+													.attr("href", "#")
+													.html($("<img>")
+														.attr("src", pic)
+													)
+													.append($("<p>")
+														.append("Comments: " + photo.comments.count)
+													)
+												)
+												// Future Functionality will allow clicking on image to load new page with comments
+											)
+									})
+								}	
+							})
+						} else {
+							$("#inst section").prepend($("<h2>").append("Photos near you!"));
+							$("#inst section").append($("<ul>").attr({class: "col:", id: "instGrid"}))
+							$.each(info.data, function(index, photo) {
+							var pic = photo.images.thumbnail.url
+							$("#instGrid")
+								.append($('<li>')
+									.attr({class: "col"})
+									.append($("<a>")
+										.attr("href", "#")
+										.html($("<img>")
+											.attr("src", pic)
+										)
+										.append($("<p>")
+											.append("Comments: " + photo.comments.count)
+										)
+									)
+								// Future Functionality will allow clicking on image to load new page with comments
 								)
-								.append($('<p>')
-										.append("Comments: " + photo.comments.count)
-								)
-							)
-						)
+							})
+						}
 						
-						// Future Functionality will allow clicking on image to load new page with comments
-					)
+					}
 				})
-			}	
-		})
+			},
+			instError = function (error) {
+				console.log(error)
+
+			};
+		navigator.geolocation.getCurrentPosition(instPos, instError, {enableHighAccuracy: true})
+		
+		
+		//$("#instGrid").empty();
+		// $.ajax({
+		// 	url: "https://api.instagram.com/v1/media/popular?client_id=831fef6bb0e6417eab368d2374183fa5",
+		// 	type: 'GET',
+		// 	dataType: 'jsonp',
+		// 	success: function(info){
+		// 		console.log(info)
+		// 		$.each(info.data, function(index, photo) {
+		// 			var pic = photo.images.thumbnail.url
+		// 			$("#instGrid")
+		// 				.append($('<li>')
+		// 					.attr({class: "col"})
+		// 					.append($("<a>")
+		// 						.attr("href", "#")
+		// 						.html($("<img>")
+		// 							.attr("src", pic)
+		// 						)
+		// 						.append($("<p>")
+		// 							.append("Comments: " + photo.comments.count)
+		// 						)
+		// 					)
+		// 					// Future Functionality will allow clicking on image to load new page with comments
+		// 				)
+		// 		})
+		// 	}	
+		// })
 		
 	})
 
@@ -365,10 +457,151 @@
 		
 	})
 
-	
-
 	// Runs when WOW is shown
 	$(document).on("pageshow", "#wow", function () {
 		
+		
+	})
+
+	// Runs before GPS is shown
+	$(document).on("pagebeforeshow", "#gps", function () {
+		var showPos = function (position) {
+				console.log(position)
+				$("#gps section").empty
+				$("#gps section").append($("<ul>"))
+				$("#gps section ul").append($("<li>").append("<p>").html("Latitude: " + position.coords.latitude)).append($("<li>").append("<p>").html("Longitude: " + position.coords.longitude))
+			},
+			errorPos = function (error) {
+				console.log(error)
+			};
+
+
+		navigator.geolocation.getCurrentPosition(showPos, errorPos, {enableHighAccuracy: true})
+		
+	})
+
+	// Runs when gps is shown
+	$(document).on("pageshow", "#gps", function () {
+		
+		
+	})
+
+	//  This will run before the #cam page is displayed
+	$(document).on('pagebeforeshow', "#cam", function () {
+		
+	})
+
+	//Runs when the #cam page is shown
+	$(document).on("pageshow", "#cam", function () {
+		var gotPic = function (picture) {
+				console.log(picture)
+				$("#cam section").append($("<img>").attr({"src": picture}))
+			},
+			picError = function (error) {
+				console.log(error)
+			};
+		
+		
+
+		navigator.camera.getPicture(gotPic, picError, {correctOrientation: true, saveToPhotoAlbum: true, quality: 49,  destinationType: Camera.DestinationType.FILE_URI})
+		
+	})
+
+
+	//Runs before the #contacts page is shown
+	$(document).on("pagebeforeshow", "#contacts", function () {
+		var gotContacts = function (contacts) {
+				contacts = contacts.sort(cSort);
+				//alert(contacts)
+				// $.each(contacts, function(i, contact){
+				// 	$("#contList").append($("<li>").append(contact[i].name))
+				// })
+				//for (var i=0; i<contacts.length; i++) {
+				$.each(contacts, function(i, contact){
+					//var primary = function () {
+						if (contact.phoneNumbers) {
+							
+								var number =contact.phoneNumbers[0].value
+							
+							// if (number.pref) {
+							// 	return number.value;
+							// } else {
+							// 	continue;
+							// }
+							//})
+						//}
+						} else {
+							var number = "N/A"
+						}
+						if (contact.emails){
+							//$.each(contact.emails, function(j, email){
+								//console.log(contact.emails[0].value)
+								var email = contact.emails[0].value
+							//})
+						} else {
+							var email = "N/A"
+						}
+						
+						// for (var j=0; j<contact.emails.length; j++) {
+						// 	console.log(contact.emails[j])
+						// }
+						
+            		$("#contList").append($("<li>").append("<h3>" + contact.name.formatted + "</h3><p>Phone: " + number + " Email: " + email + "</p>"))
+        		})
+				$("#contList").listview('refresh')
+			},
+			contactsError = function (error) {
+				console.log(error)
+			};
+				//Sorts Contacts by last then first name and restores the object
+			var cSort = function(a, b) {
+  					aName = a.name.familyName + ' ' + a.name.givenName;
+  					bName = b.name.familyName + ' ' + b.name.givenName;
+  					return aName < bName ? -1 : (aName == bName ? 0 : 1);
+				},
+				options = new ContactFindOptions();
+        	options.filter="";
+        	options.multiple=true;
+        	filter = ["name", "phoneNumbers", "emails"];
+		navigator.contacts.find(filter, gotContacts, contactsError, options)
+	})
+
+	//Runs when the #contacts page is shown
+	$(document).on("pageshow", "#contacts", function () {
+		
+	})
+
+	//Runs before the #connection page is shown
+	$(document).on("pagebeforeshow", "#connection", function () {
+		var checkConnection = function () {
+		    var networkState = navigator.connection.type;
+
+		    if (networkState === Connection.UNKNOWN) {
+		    	var connImg = "/img/unknown.jpg",
+		    		connState = "Unknown"
+		    } else if (networkState === Connection.ETHERNET) {
+		    	var connImg = "/img/ethernet.jpeg",
+		    		connState = "Ethernet"
+		    } else if (networkState === Connection.WIFI) {
+		    	var connImg = "img/wifi.png",
+		    		connState = "Wifi"
+		    } else if (networkState === Connection.CELL_2G || networkState === Connection.CELL_3G || networkState === Connection.CELL_4G || networkState === Connection.CELL) {
+		    	var connImg = "/img/cell.png",
+		    		connState = "Cellular"
+		    } else if (networkState === Connection.NONE) {
+		    	var connImg = "/img/none.png",
+		    		connState = "No Connection found"
+		    }
+
+		    
+		    $("#connection").append($("<img>").attr({'src': connImg}))
+		    $("#connection").append($("<h2>").html(connState));
+		}
+
+		checkConnection();
+	})
+
+	//Runs when the #connection page is shown
+	$(document).on("pageshow", "#contacts", function () {
 		
 	})
