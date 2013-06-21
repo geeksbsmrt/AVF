@@ -22,15 +22,31 @@
 	clip: rect(0px 80px 80px 20px);
 }
 
-#intent h3 {
+#intent h3, #access h3 {
 	margin-left: 25px;
 }
 
-#intent p {
+#intent p, #access p {
 	margin-left: 40px;
 	margin-right: 40px;
 }
 
+#instGrid li {
+    list-style: none;
+}
+
+#connection {
+    text-align: center;
+}
+
+#connection img {
+    height: 100px;
+    width: 100px;
+}
+
+#cam img {
+    height: 500px;   
+}
 /*!
  * Gridpak Beta CSS
  *

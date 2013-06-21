@@ -60,8 +60,7 @@
 			<a href="#" data-rel='popup' data-transition='pop' data-icon="gear" class="ui-btn-right">Settings</a>
 		</header>
 		<section data-role="content">
-			<h2>Under Construction</h2>
-			<p>This page is currently under construction.  Please check back soon!</p>
+			
 		</section>
 	</section>
 	<!-- End Camera -->
@@ -73,8 +72,7 @@
 			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
 		</header>
 		<section data-role="content">
-			<h2>Under Construction</h2>
-			<p>This page is currently under construction.  Please check back soon!</p>
+			
 		</section>
 	</section>
 	<!-- End GPS -->
@@ -86,11 +84,24 @@
 			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
 		</header>
 		<section data-role="content">
-			<h2>Under Construction</h2>
-			<p>This page is currently under construction.  Please check back soon!</p>
+			<ul data-role="listview" id="contList" data-mini="true" data-filter="true" data-inset="true"></ul>
 		</section>
 	</section>
 	<!-- End Contacts -->
+
+
+	<!-- Connection -->
+	<section data-role='page' id='connection' data-add-back-btn="true">
+		<header data-role="header" data-position='fixed'>
+			<h1>Connection Status</h1>
+			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
+		</header>
+		<section data-role="content">
+			
+		</section>
+	</section>
+	<!-- End Geotagged Photos -->
+
 
 	<!-- Geotagged Photos -->
 	<section data-role='page' id='geo' data-add-back-btn="true">
@@ -123,8 +134,15 @@
 				<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
 			</header>
 			<section data-role="content">
-				<h2>Under Construction</h2>
-				<p>This page is currently under construction.  Please check back soon!</p>
+				<h2>Accessibility</h2>
+					<h3>More accessible HTML</h3>
+						<p>One of the first things that comes to mind when creating accessible HTML is using proper tags to make a screen readers job easier.  Many people also mention alt tags for images.  However, many people sometimes overlook other forms of accessibility like colorblindness or users with less than optimal vision.  While the colorblindness is slightly harder to tackle from easing accessibility, it is very easy to combat issues when presenting for users with difficulty viewing small text or images.  Instead of hard-coding text sizes or image sizes, we should use percentages and relative points to allow the user’s browser to scale text and images based on the user’s settings.</p>
+ 					<h3>Common Accessibility Issues</h3>
+						<p>Extremely common complaints with accessibility features include not being able to understand the screen reader due to sound of the “voice”, inability of the reader to correctly pronounce the words, and poor feedback to users with sight problems.  A few years back, Google offered a free phone information service.  Users would call and request the phone number they wanted by speaking their query.  While Google was offering this service, they collected the voice data and have built one of the best voice recognition engines available.  This could be used to not only allow navigation on mobile devices but to provide proper feedback and even a more natural sounding screen reader.</p>
+ 					<h3>Accessible Devices</h3>
+						<p>One of the best accessible devices available is still in its infancy and not yet widely adopted.  Many people are still unaware of its existence or the feasibility of using this technology in an accessible capacity.  Tactus Technology has developed an overlay for touchscreen devices that uses a morphing substance to create dynamic raised buttons on the screen of the device.  Not only does this provide better feedback, it allows for dynamically changing braille keyboards and better navigation by feel.  Another accessibility device that is sometimes overlooked because of its availability in the market is the touchscreen.  In a previous job, I worked for a school district that used touchscreens in all of its special needs classrooms.  This enabled students who could not physically operate a mouse and keyboard to easily navigate and utilize the computers.</p>
+ 					<h3>Accessible Mobile Apps</h3>
+						<p>TapToTalk for iOS allows users who have a hard time talking or communicating to tap pictures or symbols on screen and the device will speak for them.  Code factory has developed the Wireless Accessibility application for the Android OS.  This application is designed for visually impaired users.  It uses large onscreen buttons, has a high contrast option, and includes its own screen reader for use outside of the application’s included launch screen.</p>
 			</section>
 		</section>
 	<!-- End Accessibility -->
@@ -141,6 +159,24 @@
 		</section>
 	</section>
 	<!-- End Industry Research -->
+
+	<!-- Imbeded Video -->
+	<section data-role='page' id='video' data-add-back-btn="true">
+		<header data-role="header" data-position='fixed'>
+			<h1>Imbeded Video</h1>
+			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
+		</header>
+		<section data-role="content">
+			<video width="320" height="240" controls>
+				<source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+				<source src="http://techslides.com/demos/sample-videos/small.ogv" type="video/ogg">
+				Video cannot be played on this device.
+			</video>
+		</section>
+	</section>
+	<!-- Imbeded Video -->
+
+	
 
 	<!-- Twitter -->
 	<section data-role='page' id='twit' data-add-back-btn="true">
@@ -188,7 +224,7 @@
 			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
 		</header>
 		<section data-role="content">
-			<section class="col" id="instGrid"></section>
+			
 		</section>
 	</section>
 	<!-- End Instagram -->
@@ -217,7 +253,7 @@
 
 	<!-- JS -->
 		<!-- Cordova -->
-		<!-- <script type="text/javascript" src="js/lib/cordova-2.7.0.js"></script> -->
+		<script type="text/javascript" src="js/lib/cordova.js"></script>
 		<!-- JQuery, JQM -->
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
