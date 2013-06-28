@@ -3,7 +3,7 @@
 
 
 	// Build out #home page BEFORE it is displayed
-	$(document).on('pagebeforeshow', "#home", function () {
+	$("#home").on('pagebeforeshow', function () {
 		// Clear lists to ensure all links are fresh
 		$("#home section ul").empty();
 
@@ -64,20 +64,6 @@
 	                        $.mobile.changePage("#connection")
 						})
 				)
-			)
-			.append(
-					$('<li>').append(
-						$('<a>').attr("href", "#geo").attr("id", "geoLink")
-							.html($('<h3>')
-								.append("Geotagged Photos")
-							)
-							.on('click', function (e) {
-								// Keep <a> tag from auto launching
-								e.preventDefault()
-								// Use JQM to handle the page transition
-		                        $.mobile.changePage("#geo")
-							})
-					)
 			)
 			
 
@@ -226,20 +212,9 @@
 		// Refresh ALL UL's on home page to add styling
 		$("#home section ul").listview('refresh')
 	})
-	
-	//  This will run when the #home page is displayed
-	$(document).on('pageshow', "#home", function () {
-		
-	})
-
-	//Runs when Settings is shown
-	$(document).on("pageshow", "#settings", function () {
-
-		
-	})
 
 	//Runs before Intent is shown
-	$(document).on("pagebeforeshow", "#intent", function () {
+	$("#intent").on("pagebeforeshow", function () {
 		$("#intent section")
 			.append($("<h2>")
 				.append("Data Research")
@@ -276,43 +251,9 @@
 			)
 	})
 
-	//Runs when Intent is shown
-	$(document).on("pageshow", "#intent", function () {
-
-		
-	})
-
-	//Runs before Twitter is shown
-	$(document).on("pagebeforeshow", "#twit", function () {
-		// $("#twit section").empty();
-		// $.ajax({
-		// 	url: "https://api.twitter.com/1.1/search/tweets.json?q=bugless%20beast",
-		// 	type: 'GET',
-		// 	dataType: 'jsonp',
-		// 	success: function (data) {
-		// 		console.log(data)
-		// 	}
-
-		// })
-	// 		$.ajax({
-
-	// 		})
-	// 	                RVJXczBTVGNCazlRa2VrdEZ4cFZnOkVqdGtQdXRESjFzbkRoaXNzTVZVRVNaNDJtenhtaG41RXd0
-	// RGxrUGVXWQ==
-
-                //ERWs0STcBk9QkektFxpVg:EjtkPutDJ1snDhissMVUESZ42mzxmhn5EwtDlkPeWY
-		
-	})
-
-	//Runs when Twitter is shown
-	$(document).on("pageshow", "#twit", function () {
-
-		
-	})
-
 
 	//Runs before Instagram is shown
-	$(document).on("pagebeforeshow", "#inst", function () {
+	$("#inst").on("pagebeforeshow", function () {
 		console.log("at inst");
 		var instPos = function (position) {
 				console.log(position)
@@ -323,7 +264,7 @@
 					dataType: 'jsonp',
 					success: function(info){
 						console.log(info)
-						if (info.meta.code !== 200) {
+						if (info.meta.code !== 200 || info.data.length === 0) {
 							$("#inst section").prepend("<h2>Popular Photos</h2> <p>No photos were found near you in the last 5 days.</p> <p>Search used: <ul><li>Latitude: " + position.coords.latitude + "</li><li>Longitude: " + position.coords.longitude + " </ul></p> <p>Displaying current most popular photos instead!</p>")
 							$("#inst section").append($("<ul>").attr({class: "col:", id: "instGrid"}))
 							$.ajax({
@@ -379,47 +320,14 @@
 			instError = function (error) {
 				console.log(error)
 
-			};
+			}
 		navigator.geolocation.getCurrentPosition(instPos, instError, {enableHighAccuracy: true})
 		
-		
-		//$("#instGrid").empty();
-		// $.ajax({
-		// 	url: "https://api.instagram.com/v1/media/popular?client_id=831fef6bb0e6417eab368d2374183fa5",
-		// 	type: 'GET',
-		// 	dataType: 'jsonp',
-		// 	success: function(info){
-		// 		console.log(info)
-		// 		$.each(info.data, function(index, photo) {
-		// 			var pic = photo.images.thumbnail.url
-		// 			$("#instGrid")
-		// 				.append($('<li>')
-		// 					.attr({class: "col"})
-		// 					.append($("<a>")
-		// 						.attr("href", "#")
-		// 						.html($("<img>")
-		// 							.attr("src", pic)
-		// 						)
-		// 						.append($("<p>")
-		// 							.append("Comments: " + photo.comments.count)
-		// 						)
-		// 					)
-		// 					// Future Functionality will allow clicking on image to load new page with comments
-		// 				)
-		// 		})
-		// 	}	
-		// })
-		
 	})
 
-		//Runs when Instagram is shown
-	$(document).on("pageshow", "#inst", function () {
-		
-		
-	})
 
 	// Runs before WOW is shown
-	$(document).on("pagebeforeshow", "#wow", function () {
+	$("#wow").on("pagebeforeshow", function () {
 		console.log("at wow");
 		$("#wow ul").empty()
 		$.ajax({
@@ -457,17 +365,11 @@
 		
 	})
 
-	// Runs when WOW is shown
-	$(document).on("pageshow", "#wow", function () {
-		
-		
-	})
 
 	// Runs before GPS is shown
-	$(document).on("pagebeforeshow", "#gps", function () {
+	$("#gps").on("pagebeforeshow", function () {
 		var showPos = function (position) {
 				console.log(position)
-				$("#gps section").empty
 				$("#gps section").append($("<ul>"))
 				$("#gps section ul").append($("<li>").append("<p>").html("Latitude: " + position.coords.latitude)).append($("<li>").append("<p>").html("Longitude: " + position.coords.longitude))
 			},
@@ -475,24 +377,14 @@
 				console.log(error)
 			};
 
-
+		$("#gps section").empty()
 		navigator.geolocation.getCurrentPosition(showPos, errorPos, {enableHighAccuracy: true})
 		
 	})
 
-	// Runs when gps is shown
-	$(document).on("pageshow", "#gps", function () {
-		
-		
-	})
-
-	//  This will run before the #cam page is displayed
-	$(document).on('pagebeforeshow', "#cam", function () {
-		
-	})
 
 	//Runs when the #cam page is shown
-	$(document).on("pageshow", "#cam", function () {
+	$("#cam").on("pageshow", function () {
 		var gotPic = function (picture) {
 				console.log(picture)
 				$("#cam section").append($("<img>").attr({"src": picture}))
@@ -509,51 +401,40 @@
 
 
 	//Runs before the #contacts page is shown
-	$(document).on("pagebeforeshow", "#contacts", function () {
+	$("#contacts").on("pagebeforeshow", function () {
 		var gotContacts = function (contacts) {
 				contacts = contacts.sort(cSort);
-				//alert(contacts)
-				// $.each(contacts, function(i, contact){
-				// 	$("#contList").append($("<li>").append(contact[i].name))
-				// })
-				//for (var i=0; i<contacts.length; i++) {
 				$.each(contacts, function(i, contact){
-					//var primary = function () {
 						if (contact.phoneNumbers) {
-							
-								var number =contact.phoneNumbers[0].value
-							
-							// if (number.pref) {
-							// 	return number.value;
-							// } else {
-							// 	continue;
-							// }
-							//})
-						//}
+							var number =contact.phoneNumbers[0].value
 						} else {
 							var number = "N/A"
 						}
 						if (contact.emails){
-							//$.each(contact.emails, function(j, email){
-								//console.log(contact.emails[0].value)
 								var email = contact.emails[0].value
-							//})
 						} else {
 							var email = "N/A"
 						}
-						
-						// for (var j=0; j<contact.emails.length; j++) {
-						// 	console.log(contact.emails[j])
-						// }
-						
-            		$("#contList").append($("<li>").append("<h3>" + contact.name.formatted + "</h3><p>Phone: " + number + " Email: " + email + "</p>"))
+						var cID = contact.id;
+						//console.log(contact.name.formatted + " ID: " + contact.id)
+            		$("#contList").append($("<li>")
+            						.append("<a>")
+            							.attr("href", "#editContact")
+            							.html("<h3>" + contact.name.formatted + "</h3><p>Phone: " + number + " Email: " + email + "</p>")
+            							.on("click", function (e) {
+            								e.preventDefault();
+	            								window.sessionStorage.setItem("cont", cID);
+	            								// console.log(window.sessionStorage.getItem(cont))
+	                                            $.mobile.changePage("#editContact")
+            							})
+            					)
         		})
 				$("#contList").listview('refresh')
 			},
 			contactsError = function (error) {
 				console.log(error)
 			};
-				//Sorts Contacts by last then first name and restores the object
+			//Sorts Contacts by last then first name and restores the object
 			var cSort = function(a, b) {
   					aName = a.name.familyName + ' ' + a.name.givenName;
   					bName = b.name.familyName + ' ' + b.name.givenName;
@@ -566,13 +447,57 @@
 		navigator.contacts.find(filter, gotContacts, contactsError, options)
 	})
 
-	//Runs when the #contacts page is shown
-	$(document).on("pageshow", "#contacts", function () {
-		
+	//Runs before the #editContact page is shown
+	$("#editContact").on("pagebeforeshow", function () {
+		$("#editContact section").empty()
+		//console.log(window.sessionStorage.getItem(cont))
+			var cID = window.sessionStorage.getItem("cont"),
+				searchOptions = new ContactFindOptions(),
+				printContact = function (contact) {
+					//console.log(contact.photos[0].value)
+					var setPic = function (picture) {
+							var saved = function () {
+								$("#editContact section").append(contact.name.formatted).append("<p>Updated with this photo!")
+							 	$("#editContact section").append($("<img>").attr({"src": picture}))
+								},
+								errorSaving = function (error) {
+									console.log(error)
+								};
+							// Look into if (contact.photos) to see if they exist and if it is possible to add secondary images
+							// maybe use photo = contact.photos, i = contact.photos.length++, photo[i] = new....
+							var photo=[]
+							photo[0] = new ContactField('photo', picture, false)
+							contact.photos = photo;
+							contact.save(saved, errorSaving);
+							
+						},
+						getError = function (error) {
+							console.log(error)
+						};
+					navigator.camera.getPicture(setPic, getError, {correctOrientation: true, saveToPhotoAlbum: true, quality: 49,  destinationType: Camera.DestinationType.FILE_URI})
+				}
+				searchContacts = function (results) {
+					$.each(results, function (i, result) {
+						if (result.id.toString() === cID) {
+							printContact(result)	
+						} 
+						//console.log(result.id)
+					});
+				},
+				searchError = function (error) {
+					console.log(error)
+				};
+			$("#editContact section").empty();
+			//console.log(cID);
+			searchOptions.filter=cID;
+			searchOptions.multiple=true;
+			searchFilter = ["id", "name", "phoneNumbers", "emails", "photos"];
+			navigator.contacts.find(searchFilter, searchContacts, searchError, searchOptions)
 	})
 
+
 	//Runs before the #connection page is shown
-	$(document).on("pagebeforeshow", "#connection", function () {
+	$("#connection").on("pagebeforeshow", function () {
 		var checkConnection = function () {
 		    var networkState = navigator.connection.type;
 
@@ -599,9 +524,4 @@
 		}
 
 		checkConnection();
-	})
-
-	//Runs when the #connection page is shown
-	$(document).on("pageshow", "#contacts", function () {
-		
 	})

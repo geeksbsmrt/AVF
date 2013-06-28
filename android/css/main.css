@@ -22,11 +22,11 @@
 	clip: rect(0px 80px 80px 20px);
 }
 
-#intent h3, #access h3 {
+#intent h3, #access h3, #ir h3 {
 	margin-left: 25px;
 }
 
-#intent p, #access p {
+#intent p, #access p, #ir p {
 	margin-left: 40px;
 	margin-right: 40px;
 }
@@ -44,7 +44,7 @@
     width: 100px;
 }
 
-#cam img {
+#cam img, #editContact img {
     height: 500px;   
 }
 /*!

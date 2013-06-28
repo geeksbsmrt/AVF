@@ -8,7 +8,7 @@
 
 	<meta charset="utf-8">
 	
-	<title>AVF iOS App</title>
+	<title>AVF Android App</title>
 	
 	<!--  Mobile view -->
 	<meta name="HandheldFriendly" content="True">
@@ -26,7 +26,7 @@
 	<!-- Home -->
 	<section id="home" data-role="page">
 		<header data-role="header" data-position="fixed">
-			<h1>AVF iOS App</h1>
+			<h1>AVF Android App</h1>
 			<a href="#" data-rel="popup" data-transition="pop" data-icon="gear" data-role="button" class="ui-btn-right">Settings</a>
 		</header>
 		<!-- Content -->
@@ -89,6 +89,17 @@
 	</section>
 	<!-- End Contacts -->
 
+	<!-- Edit Contact -->
+	<section data-role='page' id='editContact' data-add-back-btn="true">
+		<header data-role="header" data-position='fixed'>
+			<h1>Edit Contact</h1>
+			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
+		</header>
+		<section data-role="content">
+			
+		</section>
+	</section>
+	<!-- End Edit Contact -->
 
 	<!-- Connection -->
 	<section data-role='page' id='connection' data-add-back-btn="true">
@@ -98,20 +109,6 @@
 		</header>
 		<section data-role="content">
 			
-		</section>
-	</section>
-	<!-- End Geotagged Photos -->
-
-
-	<!-- Geotagged Photos -->
-	<section data-role='page' id='geo' data-add-back-btn="true">
-		<header data-role="header" data-position='fixed'>
-			<h1>Geotagged Photos</h1>
-			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
-		</header>
-		<section data-role="content">
-			<h2>Under Construction</h2>
-			<p>This page is currently under construction.  Please check back soon!</p>
 		</section>
 	</section>
 	<!-- End Geotagged Photos -->
@@ -154,8 +151,24 @@
 			<a href="#" data-icon="gear" class="ui-btn-right">Settings</a>
 		</header>
 		<section data-role="content">
-			<h2>Under Construction</h2>
-			<p>This page is currently under construction.  Please check back soon!</p>
+			<h3>Top Selling App Categories</h3>
+				<p>According to research collected by Distimo and reported by gigaom.com (Kim, R), relating to the Apple iOS platform, the top applications are games.  The data collected shows that all games, both free and purchased, far exceed the next category, Entertainment, by 35 plus percent.  Data collected by App Data also shows a similar trend in Japan and the United Kingdom across iOS devices.  Android applications however, show a slightly different picture in the United States.  While games hold many of the top 10 application slots, entertainment and social networking applications also rank very highly in the United States. (AppData)</p>
+ 			<h3>Inferences based on Market Research</h3>
+				<p>Based on the findings of the market research, users are currently turning to their mobile devices for entertainment and networking.  The largest section by far represented in the entertainment category is games.  This holds true across all platforms in all areas within my research.</p>
+ 			<h3>Average Bandwidth Cost and its Impact on Development</h3>
+				<p>The Telecommunications Industry Association (TIA) (Industry Association) found that mobile subscribers in the US spent more in 2012 on data than on voice for the first time ever.  The New York Times reports on a GSM 	Association study that shows the US spends three times more per gigabyte of data than their European counterparts.  These figures have been normalized into US dollars at $7.50 for the US per gigabyte and $2.50 on average in Europe (O’Brien, K).  JapanMobileTech points out that the New York Times speculated that these figures may also include overage, voice, and SMS charges.  They also show that data costs in Japan are the highest of the three coverage areas but the Japanese do not impose data limits on their subscribers (SBS).  To deal with increased data usage in the US, most mobile carriers have implemented “capped” data limits.  Subscribers who once had an unlimited data plan may find that their data speeds have been drastically reduced after hitting that “cap.”  Others without “unlimited” data will begin to incur overage charges on their monthly bill. (Gordon, W)  UK mobile users will also find themselves being charge an overage fee if they should exceed their allotted mobile data usage.  However, the European Union has set maximums that carriers can charge to subscribers in an attempt to keep communication costs low for the consumer. (Gordon, P)</p>
+			<h3>App Development Suggested Strategy</h3>
+				<p>These findings present a good case for developing applications that are self contained and limit dependence on mobile connectivity.  If an application must communicate with the internet, building in a warning for when the user is on a mobile network as opposed to WiFi or Bluetooth, would allow users to make informed decisions on whether or not to allow the app to access the remote data.  Also, adding in a data counter for your specific application could give users a positive experience by enabling them to see how your app compares to others in terms of data usage.  While Japan would be a great market to deploy in due to unlimited data usage, cost per unit of data is the highest compared to other markets.  Europe has the lowest cost per data unit but also the lowest data limits.  The US, while pricey compared to a few years ago, still offers the best rate per unit.</p>
+			<h3>References</h3>
+				<ul>
+					<li>AppData - Application Analytics for Facebook, iOS and Android. (n.d.).     AppData - Application Analytics for Facebook, iOS and Android. Retrieved June 25, 2013, from <a href="http://www.appdata.com/">http://www.appdata.com/</a></li>
+					<li>Gordon, W. (n.d.). The Death of Unlimited Data: What It Means, and How You CKeep Your Unlimited Data Plan. LifeHacker. Retrieved June 24, 2013, from <a href="http://lifehacker.com/5917843/the-death-of-unlimited-data-what-it-means-and-how-you-can-keep-your-unlimited-data-plan">lifehacker.com/5917843/the-death-of-unlimited-data-what-it-means-and-how-you-can-keep-your-unlimited-data-plan</a></li>
+					<li>Gothard, P. (n.d.). New EU regulation introduces maximum charges for mobile data roaming. Computing.co.UK. Retrieved June 25, 2013, from <a href="http://www.computing.co.uk/ctg/news/2188542/eu-regulation-introduces-maximum-charges-mobile-roaming">http://www.computing.co.uk/ctg/news/2188542/eu-regulation-introduces-maximum-charges-mobile-roaming</a></li>
+					<li>Kim, R. (n.d.). Asia booms for mobile app downloads Tech News and Analysis. GigaOM. Retrieved June 25, 2013, from <a href="http://gigaom.com/2011/06/22/asia-booms-for-mobile-app-downloads/">http://gigaom.com/2011/06/22/asia-booms-for-mobile-app-downloads</a></li>
+					<li>O'Brien, K. (n.d.). Americans Paying More for LTE Service - NYTimes.com. The New York Times - Breaking News, World News & Multimedia. Retrieved June 25, 2013, from <a href="http://www.nytimes.com/2012/10/15/technology/americans-paying-more-for-lte-service.html?pagewanted=all&_r=0">http://www.nytimes.com/2012/10/15/technology/americans-paying-more-for-lte-service.html?pagewanted=all&_r=0</a></li>
+					<li>SBS. (n.d.). Japan Mobile Tech: LTE data in Japan costs $10/GB. Japan Mobile Tech. Retrieved June 25, 2013, from <a href="http://www.japanmobiletech.com/2012/10/lte-data-in-japan-costs-10gb.html">http://www.japanmobiletech.com/2012/10/lte-data-in-japan-costs-10gb.html</a></li>
+					<li>Industry Association. (n.d.). TIA Releases 2013 MR&F: For First Time, U.S. Consumers Spent More on Mobile Data than on Voice; Mobile Penetration Topped 100% | Telecommunications Industry Association. Telecommunications Industry Association. Retrieved June 25, 2013, from <a href="http://www.tiaonline.org/news-media/press-releases/tia-releases-2013-mrf-first-time-us-consumers-spent-more-mobile-data-voice">http://www.tiaonline.org/news-media/press-releases/tia-releases-2013-mrf-first-time-us-consumers-spent-more-mobile-data-voice</a></li>
+				</ul>
 		</section>
 	</section>
 	<!-- End Industry Research -->
